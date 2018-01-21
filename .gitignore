@@ -1,0 +1,196 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Unix / Vim #
+##############
+*.swp
+
+
+*.config
+Bin
+node_modules
+mongodb
+launch.json
+.vs
+packages
+*.sln
+/unit_1/w02d03/student_examples/morning_lab/Bin
+/unit_1/w02d03/student_examples/morning_lab/Web.config
+/unit_1/w02d03/student_examples/morning_lab/Web.Debug.config
+/unit_1/w02d03/student_examples/morning_lab/packages.config
+/unit_1/w02d03/student_labs/oop_westworld/Westworld/Westworld.sln
+/unit_1/w02d03/student_labs/oop_westworld/Westworld/NodejsConsoleApp1/README.md
+/unit_1/w02d03/student_labs/oop_westworld/Westworld/NodejsConsoleApp1/package.json
+/unit_1/w02d03/student_labs/oop_westworld/Westworld/NodejsConsoleApp1/NodejsConsoleApp1.njsproj
+/unit_1/w02d03/student_labs/oop_westworld/Westworld/NodejsConsoleApp1
+/unit_1/w02d03/student_labs/oop_westworld/Westworld/.vs/Westworld/v15
+/unit_1/w02d03/student_examples/classes/Web.Debug.config
+/unit_1/w02d03/student_examples/classes/Web.config
+/unit_1/w02d03/student_examples/classes/packages.config
+/unit_1/w02d03/student_examples/classes/Bin
+/unit_1/w02d03/student_examples/classes/favicon.ico
+/unit_1/w02d03/homework/adventure game/Web.Debug.config
+/unit_1/w02d03/homework/adventure game/Web.config
+/unit_1/w02d03/homework/adventure game/packages.config
+/unit_1/w02d03/homework/adventure game/Bin
+/unit_1/w02d04/student_examples/morning_exercise/Web.Debug.config
+/unit_1/w02d04/student_examples/morning_exercise/Web.config
+/unit_1/w02d04/student_examples/morning_exercise/packages.config
+/unit_1/w02d04/student_examples/morning_exercise/Bin
+/unit_1/w02d04/homework/spacebattle/Web.Debug.config
+/unit_1/w02d04/homework/spacebattle/Web.config
+/unit_1/w02d04/homework/spacebattle/packages.config
+/unit_1/w02d04/homework/spacebattle/Bin
+/unit_1/w02d05/morning_exercise/vssl_mockup/Web.Debug.config
+/unit_1/w02d05/morning_exercise/vssl_mockup/Web.config
+/unit_1/w02d05/morning_exercise/vssl_mockup/packages.config
+/unit_1/w02d05/morning_exercise/vssl_mockup/Bin
+/unit_1/w02d05/student_examples/lesson1/Web.Debug.config
+/unit_1/w02d05/student_examples/lesson1/Web.config
+/unit_1/w02d05/student_examples/lesson1/packages.config
+/unit_1/w02d05/student_examples/lesson1/Bin
+/unit_1/w02d05/student_labs/vanilla_dom_practice/Web.Debug.config
+/unit_1/w02d05/student_labs/vanilla_dom_practice/Web.config
+/unit_1/w02d05/student_labs/vanilla_dom_practice/packages.config
+/unit_1/w02d05/student_labs/vanilla_dom_practice/Bin
+/unit_1/w02d05/student_examples/jQuery_intro/Web.Debug.config
+/unit_1/w02d05/student_examples/jQuery_intro/Web.config
+/unit_1/w02d05/student_examples/jQuery_intro/packages.config
+/unit_1/w02d05/student_examples/jQuery_intro/Bin
+/unit_1/w02d05/student_labs/jquery_practice/Web.Debug.config
+/unit_1/w02d05/student_labs/jquery_practice/Web.config
+/unit_1/w02d05/student_labs/jquery_practice/packages.config
+/unit_1/w02d05/student_labs/jquery_practice/Bin
+/unit_1/w02d05/homework/Web.Debug.config
+/unit_1/w02d05/homework/Web.config
+/unit_1/w02d05/homework/packages.config
+/unit_1/w02d05/homework/Bin/roslyn
+/unit_1/w02d05/homework/Bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+/unit_1/w02d05/homework/Bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll.refresh
+/unit_1/w02d05/homework/Bin
+/unit_1/w03d01/morning_exercise1/Web.Debug.config
+/unit_1/w03d01/morning_exercise1/Web.config
+/unit_1/w03d01/morning_exercise1/packages.config
+/unit_1/w03d01/morning_exercise1/Bin
+/unit_1/w03d01/student_labs/morning_lab/Web.Debug.config
+/unit_1/w03d01/student_labs/morning_lab/Web.config
+/unit_1/w03d01/student_labs/morning_lab/packages.config
+/unit_1/w03d01/student_labs/morning_lab/Bin
+/unit_1/w03d01/student_labs/afternoon_lab/Web.Debug.config
+/unit_1/w03d01/student_labs/afternoon_lab/Web.config
+/unit_1/w03d01/student_labs/afternoon_lab/packages.config
+/unit_1/w03d01/student_labs/afternoon_lab/Bin
+/unit_1/w03d01/student_examples/events/Web.Debug.config
+/unit_1/w03d01/student_examples/events/Web.config
+/unit_1/w03d01/student_examples/events/packages.config
+/unit_1/w03d01/student_examples/events/Bin
+/unit_1/w03d01/homework/lotr/Web.Debug.config
+/unit_1/w03d01/homework/lotr/Web.config
+/unit_1/w03d01/homework/lotr/packages.config
+/unit_1/w03d01/homework/lotr/Bin
+/unit_1/w03d02/morning_exercise/Web.Debug.config
+/unit_1/w03d02/morning_exercise/Web.config
+/unit_1/w03d02/morning_exercise/packages.config
+/unit_1/w03d02/morning_exercise/Bin
+/unit_1/w03d02/student_examples/event_bubbling/Web.Debug.config
+/unit_1/w03d02/student_examples/event_bubbling/Web.config
+/unit_1/w03d02/student_examples/event_bubbling/packages.config
+/unit_1/w03d02/student_examples/event_bubbling/Bin
+/unit_1/w03d02/student_examples/event_bubbling - Copy/Web.Debug.config
+/unit_1/w03d02/student_examples/event_bubbling - Copy/Web.config
+/unit_1/w03d02/student_examples/event_bubbling - Copy/packages.config
+/unit_1/w03d02/student_examples/event_bubbling - Copy/Bin
+/unit_1/w03d02/morning_lab w03d02/Web.Debug.config
+/unit_1/w03d02/morning_lab w03d02/Web.config
+/unit_1/w03d02/morning_lab w03d02/packages.config
+/unit_1/w03d02/morning_lab w03d02/Bin
+/unit_1/w03d02/homework/to_do_app/Web.Debug.config
+/unit_1/w03d02/homework/to_do_app/Web.config
+/unit_1/w03d02/homework/to_do_app/packages.config
+/unit_1/w03d02/homework/to_do_app/Bin
+/unit_1/w03d03/morning_exercise/modal_practice/Web.Debug.config
+/unit_1/w03d03/morning_exercise/modal_practice/Web.config
+/unit_1/w03d03/morning_exercise/modal_practice/packages.config
+/unit_1/w03d03/morning_exercise/modal_practice/jquery-3.2.1.js
+/unit_1/w03d03/morning_exercise/modal_practice/Bin
+/unit_1/w03d03/student_labs/morning/shape_clicker/Web.Debug.config
+/unit_1/w03d03/student_labs/morning/shape_clicker/Web.config
+/unit_1/w03d03/student_labs/morning/shape_clicker/packages.config
+/unit_1/w03d03/student_labs/morning/shape_clicker/jquery-3.2.1.js
+/unit_1/w03d03/student_labs/morning/shape_clicker/Bin
+/unit_1/w03d03/student_examples/palette_picker_starter/Web.Debug.config
+/unit_1/w03d03/student_examples/palette_picker_starter/Web.config
+/unit_1/w03d03/student_examples/palette_picker_starter/packages.config
+/unit_1/w03d03/student_examples/palette_picker_starter/jquery-3.2.1.js
+/unit_1/w03d03/student_examples/palette_picker_starter/Bin
+/unit_1/w03d03/student_examples/events_and_loops/Web.Debug.config
+/unit_1/w03d03/student_examples/events_and_loops/Web.config
+/unit_1/w03d03/student_examples/events_and_loops/packages.config
+/unit_1/w03d03/student_examples/events_and_loops/jquery-3.2.1.js
+/unit_1/w03d03/student_examples/events_and_loops/Bin
+/unit_1/w03d03/student_labs/afternoon/tic_tac_toe/Web.Debug.config
+/unit_1/w03d03/student_labs/afternoon/tic_tac_toe/Web.config
+/unit_1/w03d03/student_labs/afternoon/tic_tac_toe/packages.config
+/unit_1/w03d03/student_labs/afternoon/tic_tac_toe/jquery-3.2.1.js
+/unit_1/w03d03/student_labs/afternoon/tic_tac_toe/Bin
+/unit_1/w03d04/morning_exercise/css-animations-intro/Web.Debug.config
+/unit_1/w03d04/morning_exercise/css-animations-intro/Web.config
+/unit_1/w03d04/morning_exercise/css-animations-intro/packages.config
+/unit_1/w03d04/morning_exercise/css-animations-intro/jquery-3.2.1.js
+/unit_1/w03d04/morning_exercise/css-animations-intro/Bin
+/unit_2/w04d05/morning_exercise/response_mockups/Web.Debug.config
+/unit_2/w04d05/morning_exercise/response_mockups/Web.config
+/unit_2/w04d05/morning_exercise/response_mockups/packages.config
+/unit_2/w04d05/morning_exercise/response_mockups/Bin
+/unit_2/w05d01/morning_exercise/Web.Debug.config
+/unit_2/w05d01/morning_exercise/Web.config
+/unit_2/w05d01/morning_exercise/packages.config
+/unit_2/w05d01/morning_exercise/Bin
+unit_2/w06d02/student_examples/.vscode/launch.json
+unit_2/w06d02/student_examples/mongodb/journal/WiredTigerLog.0000000001
+unit_2/w06d02/student_examples/mongodb/collection-0-8181957281308729007.wt
+unit_2/w06d02/student_examples/mongodb/index-1-8181957281308729007.wt
+unit_2/w06d02/student_examples/mongodb/sizeStorer.wt
+unit_2/w06d02/student_examples/mongodb/WiredTiger.turtle
+unit_2/w06d02/student_examples/mongodb/WiredTiger.wt
+unit_2/w06d02/student_examples/mongodb/WiredTiger.wt
+unit_2/w06d02/student_examples/mongodb/_mdb_catalog.wt
+unit_2/w06d02/student_examples/mongodb/collection-0-8181957281308729007.wt
+unit_2/w06d02/student_examples/mongodb/index-1-8181957281308729007.wt
+unit_2/w06d02/student_examples/mongodb/sizeStorer.wt
+unit_2/w06d02/student_examples/mongodb/WiredTiger.turtle
+/unit_3/w08d01/student_examples/movies_app/apikey.js
