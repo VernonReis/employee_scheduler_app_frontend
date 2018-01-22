@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/VernonReis/employee_scheduler_app_frontend/issues"
   },
-  "homepage": "https://github.com/VernonReis/employee_scheduler_app_frontend#readme"
+  "homepage": "https://github.com/VernonReis/employee_scheduler_app_frontend#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6"
+  }
 }
