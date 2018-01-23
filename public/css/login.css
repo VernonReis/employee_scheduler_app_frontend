@@ -1,0 +1,32 @@
+#container {
+  border: 1px solid black;
+  width: 60%;
+  height: 300px;
+  margin: auto;
+}
+
+#loginForm {
+  margin: 15% auto 5% auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 50%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#loginForm > div {
+  margin: auto;
+}
+
+#loginButtons {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  width: 60%;
+}
+
+#loginButtons > button {
+  margin: auto;
+}

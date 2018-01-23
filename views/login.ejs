@@ -7,13 +7,35 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script type="text/javascript" src="/js/admin.js"></script>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/login.css">
 
-  <title>My Movies App</title>
+  <title></title>
 </head>
 
 <body ng-controller="MainController as ctrl">
-  Login Test
+
+  <div id="container">
+
+    <form id="loginForm" ng-submit="ctrl.loginUser()">
+
+      <div>
+        <label for="username">Username: </label>
+        <input type="text" class="form-control" placeholder="username" ng-model="ctrl.loginForm.username" required />
+      </div>
+      <div>
+        <label for="pwd">Password:  </label>
+        <input type="password" class="form-control" placeholder="password" ng-model="ctrl.loginForm.password" required />
+      </div>
+    </form>
+
+    <div id="loginButtons">
+      <button ng-click="ctrl.loginUser()">Login</button>
+      <button ng-click="ctrl.showRegister()">Register</button>
+    </div>
+  </div>
+
+
+
 </body>
 
 </html>
