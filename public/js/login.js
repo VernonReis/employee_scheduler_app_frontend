@@ -2,7 +2,11 @@ const app = angular.module('LoginApp', []);
 
 app.controller('MainController', ['$http', function ($http) {
 
-  this.url = "http://localhost:3000"
+  this.url = "http://localhost:3000";
+
+
+
+  
 
   this.registerUser = (id) => {
 
@@ -39,7 +43,6 @@ app.controller('MainController', ['$http', function ($http) {
         this.shortPass = false;
         this.shortUser = false;
         this.taken = false;
-        closeNav();
       }, error => {
         this.newUserForm = {};
         this.taken = true;
@@ -68,12 +71,12 @@ app.controller('MainController', ['$http', function ($http) {
   this.loginUser = (id) => {
 
     const user = {
-      'email': this.loginForm.username,
+      'username': this.loginForm.username,
       'password': this.loginForm.password
     }
 
     $http({
-      url: this.url + '/auth/sign_in',
+      url: this.url + '/users/login',
       method: 'POST',
       data: user
     }).then(response => {
@@ -84,7 +87,6 @@ app.controller('MainController', ['$http', function ($http) {
       this.badLogin = false;
       this.shortUser = false;
       this.shortPass = false;
-      closeNavLogin();
 
       // $http({
       //   url: '/session',
