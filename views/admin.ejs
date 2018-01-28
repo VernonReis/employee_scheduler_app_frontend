@@ -13,7 +13,53 @@
 </head>
 
 <body ng-controller="MainController as ctrl">
-  
+
+
+  <div id="scheduleView" ng-if="ctrl.scheduleView">
+    <h1>Current Week</h1>
+
+    <select>
+
+      <option ng-repeat="week in ctrl.payPeriods"> {{ week.start_date }} </option>
+
+    </select>
+
+    <button ng-click="ctrl.loadWeek()">Load Week</button>
+    <button ng-click="ctrl.createWeek()">Create Next Week Schedule</button>
+
+
+    <div id="daySelector">
+      <button ng-click="ctrl.loadDay(1)">Sunday</button>
+      <button ng-click="ctrl.loadDay(2)">Monday</button>
+      <button ng-click="ctrl.loadDay(3)">Tuesday</button>
+      <button ng-click="ctrl.loadDay(4)">Wednesday</button>
+      <button ng-click="ctrl.loadDay(5)">Thursday</button>
+      <button ng-click="ctrl.loadDay(6)">Friday</button>
+      <button ng-click="ctrl.loadDay(7)">Saturday</button>
+    </div>
+
+
+    <div id="employeeSchedules">
+      <div ng-repeat="lineItem in ctrl.daySchedules">
+
+        {{ lineitem.employee.first_name }} {{ lineitem.employee.last_name }}
+
+        <div ng-if="lineitem.schedule_entry">
+          <input type="time" ng-model="lineitem.schedule_entry.start_time">
+          <input type="time" ng-model="lineitem.schedule_entry.end_time">
+        </div>
+
+        <div ng-if="!lineitem.schedule_entry">
+          OFF
+          <button ng-click="ctrl.addShift(lineitem)">Add Shift</button>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
 </body>
 
 </html>
