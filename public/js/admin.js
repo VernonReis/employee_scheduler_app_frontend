@@ -12,8 +12,6 @@ app.controller('MainController', ['$http', function ($http) {
 
   parseDate = (dateString) => {
     const date = dateString.slice(0, 10);
-    console.log(dateString);
-    console.log(date);
     return date
   }
 
@@ -28,9 +26,6 @@ app.controller('MainController', ['$http', function ($http) {
     // Trim chars 12-17 for time
     const date = dateString.slice(0, 10);
     const time = dateString.slice(11, 16);
-    const test = new Date(date + " " + time);
-    console.log(test.getDay());
-    console.log(test);
     return date + " " + time;
   }
 
@@ -58,6 +53,12 @@ app.controller('MainController', ['$http', function ($http) {
     return dateString;
   }
 
+  compare = (a,b) => {
+    if(a.employee.id < b.employee.id) return -1;
+    if(a.employee.id > b.employee.id) return 1;
+    return 0;
+  }
+
   $http({
     url: this.url + '/employers/1',
     method: 'GET'
@@ -69,7 +70,6 @@ app.controller('MainController', ['$http', function ($http) {
     }
 
     this.employees = response.data.employees;
-    console.log(response);
   }, error => {
     // console.log(error.message);
   }).catch(err => console.log(err))
@@ -118,6 +118,7 @@ app.controller('MainController', ['$http', function ($http) {
 
   this.loadDay = (dayOfWeek) => {
     this.daySchedules = null;
+    this.currentDay = dayOfWeek;
 
 
     for (employee of this.employees) {
@@ -140,12 +141,11 @@ app.controller('MainController', ['$http', function ($http) {
         }
         if (this.daySchedules == null) {
           this.daySchedules = [newLine];
-          console.log("bargle");
-          console.log(this.daySchedules);
         }
         else {
           this.daySchedules.push(newLine);
         }
+        this.daySchedules.sort(compare);
       }, error => {
         // console.log(error.message);
       }).catch(err => console.log(err))
@@ -157,18 +157,24 @@ app.controller('MainController', ['$http', function ($http) {
       start_time: convertDate(entry.start_time),
       end_time: convertDate(entry.end_time)
     }
-    console.log("entry");
-    console.log(entry);
-    console.log("start_time");
-    console.log(entry.start_time);
-    console.log("params");
-    console.log(params);
     $http({
       url: this.url + '/schedule_entries/' + entry.schedule_entry.id,
       method: 'PUT',
       data: params
     }).then(response => {
-      console.log(response);
+    }, error => {
+      console.log(error.message);
+    }).catch(err => console.log(err))
+  }
+
+  this.deleteEntry = (entry) => {
+
+    $http({
+      url: this.url + '/schedule_entries/' + entry.schedule_entry.id,
+      method: 'DELETE',
+    }).then(response => {
+      delete entry;
+      this.loadDay(this.dayOfWeek);
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))

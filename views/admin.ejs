@@ -50,6 +50,7 @@
           <input type="time" ng-model="lineItem.start_time" step="900">
           <input type="time" ng-model="lineItem.end_time" step="900">
           <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
+          <button ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
         </div>
 
         <div ng-if="!lineItem.hasEntry">
@@ -69,6 +70,7 @@
       <input type="text" ng-model="ctrl.newUser.first_name" required>
       <input type="text" ng-model="ctrl.newUser.last_name" required>
       <button ng-click="ctrl.createEmployee()">Add New Employee</button>
+      
     </form>
 
     <div id="employeeList" ng-repeat="employee in ctrl.employees">
