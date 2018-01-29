@@ -15,38 +15,45 @@
 <body ng-controller="MainController as ctrl">
 
   <div id="scheduleView" ng-if="ctrl.scheduleView">
-    <div>
+    <div class="center">
       <button ng-click="ctrl.scheduleView = !ctrl.scheduleView">Manage Employees</button>
     </div>
 
     <div id="container">
-      Current Week
 
-      <select ng-model="ctrl.selectedPeriod">
+      <div class="center darkBrown">
+        <div class="center">
+          Select Week:
 
-        <option ng-repeat="week in ctrl.payPeriods" value="{{week.id}}"> {{ week.start_date }} </option>
+          <select ng-model="ctrl.selectedPeriod">
 
-      </select>
+            <option ng-repeat="week in ctrl.payPeriods" value="{{week.id}}"> {{ week.display_date }} </option>
 
-      <button ng-click="ctrl.loadWeek()">Load Week</button>
-      <button ng-click="ctrl.createWeek()">Create Next Week Schedule</button>
+          </select>
+        </div>
+        <div class="center">
+          <button ng-click="ctrl.loadWeek()">Load Week</button>
+          <button ng-click="ctrl.createWeek()">Create Next Week Schedule</button>
+        </div>
+      </div>
 
 
-      <div id="daySelector" ng-if="ctrl.currentPeriod">
-        View:
-        <button ng-click="ctrl.loadDay(0)">Sunday</button>
-        <button ng-click="ctrl.loadDay(1)">Monday</button>
-        <button ng-click="ctrl.loadDay(2)">Tuesday</button>
-        <button ng-click="ctrl.loadDay(3)">Wednesday</button>
-        <button ng-click="ctrl.loadDay(4)">Thursday</button>
-        <button ng-click="ctrl.loadDay(5)">Friday</button>
-        <button ng-click="ctrl.loadDay(6)">Saturday</button>
+      <div class="center">
+        <div id="daySelector" ng-if="ctrl.currentPeriod">
+          <button class="blue" ng-click="ctrl.loadDay(0)">Sunday</button>
+          <button class="blue" ng-click="ctrl.loadDay(1)">Monday</button>
+          <button class="blue" ng-click="ctrl.loadDay(2)">Tuesday</button>
+          <button class="blue" ng-click="ctrl.loadDay(3)">Wednesday</button>
+          <button class="blue" ng-click="ctrl.loadDay(4)">Thursday</button>
+          <button class="blue" ng-click="ctrl.loadDay(5)">Friday</button>
+          <button class="blue" ng-click="ctrl.loadDay(6)">Saturday</button>
+        </div>
       </div>
 
 
       <div id="employeeSchedules">
 
-        <table ng-if="ctrl.currentDay != null">
+        <table ng-if="ctrl.currentDay != null && !this.viewWeek">
           <caption>
             <h3 ng-if="ctrl.dayHeader">{{ ctrl.dayHeader }}</h3>
           </caption>
@@ -69,25 +76,35 @@
               <input type="time" ng-model="lineItem.end_time" step="900">
             </td>
             <td ng-if="lineItem.hasEntry">
-              <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
-              <button ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
+              <div class="center">
+                <button class="green" ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
+                <button class="red" ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
+              </div>
             </td>
 
             <td ng-if="!lineItem.hasEntry && !lineItem.newShift">
+              <div class="center">
               OFF
+            </div>
             </td>
             <td ng-if="!lineItem.hasEntry && !lineItem.newShift">
-              OFF
+                <div class="center">
+                    OFF
+                  </div>
             </td>
 
 
             <td ng-if="!lineItem.hasEntry && !lineItem.newShift">
-              <button ng-click="ctrl.setupNew(lineItem)">Add Shift</button>
+              <div class="center">
+                <button ng-click="ctrl.setupNew(lineItem)">Add Shift</button>
+              </div>
             </td>
 
             <td ng-if="!lineItem.hasEntry && lineItem.newShift">
-              <button ng-click="ctrl.newShift(lineItem)">Save Shift</button>
-              <button ng-click="lineItem.newShift = false">Cancel</button>
+              <div class="center">
+                <button ng-click="ctrl.newShift(lineItem)">Save Shift</button>
+                <button ng-click="lineItem.newShift = false">Cancel</button>
+              </div>
             </td>
 
 
@@ -107,21 +124,24 @@
 
   <div id="employeeView" ng-if="!ctrl.scheduleView">
 
-    <div id="nav">
+    <div class="center" id="nav">
       <button ng-click="ctrl.scheduleView = !ctrl.scheduleView">Manage Schedule</button>
     </div>
 
     <div id="container">
-      <form>
-        <input type="text" ng-model="ctrl.newUser.first_name" required>
-        <input type="text" ng-model="ctrl.newUser.last_name" required>
-        <button ng-click="ctrl.createEmployee()">Add New Employee</button>
+      <form class="center" id="newEmp">
+        <input type="text" ng-model="ctrl.newUser.first_name" placeholder="First Name" required>
+        <input type="text" ng-model="ctrl.newUser.last_name" placeholder="Last Name" required>
+
+        <div class="center">
+          <button ng-click="ctrl.createEmployee()">Add New Employee</button>
+        </div>
 
       </form>
 
-      <div id="employeeList" ng-repeat="employee in ctrl.employees">
+      <div class="center" id="employeeList" ng-repeat="employee in ctrl.employees">
         {{ employee.first_name }} {{ employee.last_name }}
-        <button ng-click="ctrl.deleteEmployee(employee)">Delete</button>
+        <button class="red" ng-click="ctrl.deleteEmployee(employee)">Delete</button>
       </div>
     </div>
   </div>

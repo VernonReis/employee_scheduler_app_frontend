@@ -1,5 +1,14 @@
+
+
 #container {
   margin-top: 50px;
+}
+
+#scheduleView, #employeeView{
+  background-color: #CA975C;
+  min-height: 300px;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 table, th, td {
@@ -11,6 +20,15 @@ table {
   margin: auto;
 }
 
+.center {
+  margin: 10px auto 10px auto;
+  width: fit-content;
+}
+
+
+td > button {
+  margin: auto;
+}
 
 .timeCol {
   width: 100px;
@@ -22,4 +40,42 @@ table {
 
 #optionCol {
   width: 200px;
+
 }
+
+.green {
+  background-color: #4fbb46;
+}
+
+.red {
+  background-color: rgb(219, 92, 92);
+}
+
+.blue {
+  background-color: rgb(106, 153, 253);
+}
+
+.lighterBlue {
+  background-color: rgb(185, 207, 255);
+}
+
+button {
+  border: 0px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+#newEmp, .darkBrown {
+  background-color: rgb(110, 81, 48);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+
+th {
+  background-color: lightblue;
+}
+
+td {
+  background-color: rgb(185, 207, 255);

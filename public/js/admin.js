@@ -4,7 +4,7 @@ app.controller('MainController', ['$http', function ($http) {
 
   this.currentWeek = 0;
   this.employer = 1;
-  
+  this.viewWeek = false;
 
 
 
@@ -75,32 +75,12 @@ app.controller('MainController', ['$http', function ($http) {
   }
 
   setDayHeader = (dayOfWeek) => {
-    switch (dayOfWeek) {
-      case 0:
-        this.dayHeader = "Sunday";
-        break;
-      case 1:
-        this.dayHeader = "Monday";
-        break;
-      case 2:
-        this.dayHeader = "Tuesday";
-        break;
-      case 3:
-        this.dayHeader = "Wednesday";
-        break;
-      case 4:
-        this.dayHeader = "Thursday";
-        break;
-      case 5:
-        this.dayHeader = "Friday";
-        break;
-      case 6:
-        this.dayHeader = "Saturday";
-        break;
 
-      default:
-        return 0;
-    }
+    let thisDate = new Date(this.currentWeekDate);
+    addDays(thisDate,dayOfWeek);
+    this.dayHeader = thisDate.toDateString();
+    // this.dateHeader = this.Date.slice(0,15);
+
   }
 
 
@@ -114,7 +94,8 @@ app.controller('MainController', ['$http', function ($http) {
       this.payPeriods.sort(comparePayId);
 
       for (index in this.payPeriods) {
-        this.payPeriods[index].start_date = parseDateTime(this.payPeriods[index].start_date)
+        this.payPeriods[index].start_date = parseDateTime(this.payPeriods[index].start_date);
+        this.payPeriods[index].display_date = parseDate(this.payPeriods[index].start_date);
       }
 
 
@@ -147,8 +128,6 @@ app.controller('MainController', ['$http', function ($http) {
     addHours(entry.end_time, 17)
     addDays(entry.start_time, this.currentDay);
     addDays(entry.end_time, this.currentDay);
-    console.log(entry.start_time);
-    console.log(entry.end_time);
   }
 
 
@@ -159,7 +138,7 @@ app.controller('MainController', ['$http', function ($http) {
 
     this.currentPeriod = this.selectedPeriod;
     $http({
-      url: this.url + '/pay_periods/1',
+      url: this.url + '/pay_periods/' + this.selectedPeriod,
       method: 'GET'
     }).then(response => {
       this.scheduleEntries = response.data.schedule_entries;
@@ -170,6 +149,7 @@ app.controller('MainController', ['$http', function ($http) {
       }
 
       this.daySchedules = this.schedule_entries;
+      this.currentWeekDate = parseDateTime(response.data.start_date);
       if (this.selectedPeriod != null) {
         this.loadDay(0);
       }
@@ -276,6 +256,7 @@ app.controller('MainController', ['$http', function ($http) {
       employer_id: this.employer,
       start_date: convertDate(newStart)
     }
+    
     $http({
       url: this.url + '/pay_periods',
       method: 'POST',
