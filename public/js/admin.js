@@ -110,8 +110,9 @@ app.controller('MainController', ['$http', function ($http) {
 
 
 
-  this.loadWeek = (payPeriodId) => {
-    this.currentPeriod = 1;
+  this.loadWeek = () => {
+    console.log(this.selectedPeriod)
+    this.currentPeriod = this.selectedPeriod;
     $http({
       url: this.url + '/pay_periods/1',
       method: 'GET'
@@ -181,6 +182,7 @@ app.controller('MainController', ['$http', function ($http) {
       method: 'PUT',
       data: params
     }).then(response => {
+      this.loadDay(this.currentDay);
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))

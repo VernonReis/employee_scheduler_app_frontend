@@ -18,13 +18,13 @@
   <div id="scheduleView" ng-if="ctrl.scheduleView">
     Current Week
 
-    <select>
+    <select ng-model="ctrl.selectedPeriod">
 
-      <option ng-repeat="week in ctrl.payPeriods"> {{ week.start_date }} </option>
+      <option ng-repeat="week in ctrl.payPeriods" value="{{week.id}}"> {{ week.start_date }} </option>
 
     </select>
 
-    <button ng-click="ctrl.loadWeek(1)">Load Week</button>
+    <button ng-click="ctrl.loadWeek()">Load Week</button>
     <button ng-click="ctrl.createWeek()">Create Next Week Schedule</button>
 
 
