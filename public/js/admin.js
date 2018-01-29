@@ -62,9 +62,9 @@ app.controller('MainController', ['$http', function ($http) {
     return dateString;
   }
 
-  compareEmpId = (a, b) => {
-    if (a.employee.id < b.employee.id) return -1;
-    if (a.employee.id > b.employee.id) return 1;
+  compareLastName = (a, b) => {
+    if (a.employee.last_name < b.employee.last_name) return -1;
+    if (a.employee.last_name > b.employee.last_name) return 1;
     return 0;
   }
 
@@ -180,7 +180,7 @@ app.controller('MainController', ['$http', function ($http) {
         else {
           this.daySchedules.push(newLine);
         }
-        this.daySchedules.sort(compareEmpId);
+        this.daySchedules.sort(compareLastName);
       }, error => {
         // console.log(error.message);
       }).catch(err => console.log(err))
@@ -247,6 +247,23 @@ app.controller('MainController', ['$http', function ($http) {
     }
     $http({
       url: this.url + '/pay_periods',
+      method: 'POST',
+      data: params
+    }).then(response => {
+      this.initialize();
+    }, error => {
+      console.log(error.message);
+    }).catch(err => console.log(err))
+  }
+
+  this.createEmployee = () => {
+    params = {
+      employer_id: this.employer,
+      first_name: this.newUser.first_name,
+      last_name: this.newUser.last_name
+    }
+    $http({
+      url: this.url + '/employees',
       method: 'POST',
       data: params
     }).then(response => {

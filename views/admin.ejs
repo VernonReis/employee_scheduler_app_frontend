@@ -7,85 +7,94 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script type="text/javascript" src="/js/admin.js"></script>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
 
   <title></title>
 </head>
 
 <body ng-controller="MainController as ctrl">
 
-
   <div id="scheduleView" ng-if="ctrl.scheduleView">
-    Current Week
-
-    <select ng-model="ctrl.selectedPeriod">
-
-      <option ng-repeat="week in ctrl.payPeriods" value="{{week.id}}"> {{ week.start_date }} </option>
-
-    </select>
-
-    <button ng-click="ctrl.loadWeek()">Load Week</button>
-    <button ng-click="ctrl.createWeek()">Create Next Week Schedule</button>
-
-
-    <div id="daySelector" ng-if="ctrl.currentPeriod">
-      View:
-      <button ng-click="ctrl.loadDay(0)">Sunday</button>
-      <button ng-click="ctrl.loadDay(1)">Monday</button>
-      <button ng-click="ctrl.loadDay(2)">Tuesday</button>
-      <button ng-click="ctrl.loadDay(3)">Wednesday</button>
-      <button ng-click="ctrl.loadDay(4)">Thursday</button>
-      <button ng-click="ctrl.loadDay(5)">Friday</button>
-      <button ng-click="ctrl.loadDay(6)">Saturday</button>
+    <div>
+      <button ng-click="ctrl.scheduleView = !ctrl.scheduleView">Manage Employees</button>
     </div>
 
+    <div id="container">
+      Current Week
 
-    <div id="employeeSchedules">
-      <div ng-repeat="lineItem in ctrl.daySchedules">
+      <select ng-model="ctrl.selectedPeriod">
 
-        {{ lineItem.employee.first_name }} {{ lineItem.employee.last_name }}
+        <option ng-repeat="week in ctrl.payPeriods" value="{{week.id}}"> {{ week.start_date }} </option>
 
-        <div ng-if="lineItem.hasEntry">
+      </select>
 
-          <input type="time" ng-model="lineItem.start_time" step="900">
-          <input type="time" ng-model="lineItem.end_time" step="900">
-          <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
-          <button ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
-        </div>
+      <button ng-click="ctrl.loadWeek()">Load Week</button>
+      <button ng-click="ctrl.createWeek()">Create Next Week Schedule</button>
 
-        <div ng-if="!lineItem.hasEntry">
-          <div ng-if="!lineItem.newShift">
-            OFF
-            <button ng-click="ctrl.setupNew(lineItem)">Add Shift</button>
-          </div>
-          <div ng-if="lineItem.newShift">
+
+      <div id="daySelector" ng-if="ctrl.currentPeriod">
+        View:
+        <button ng-click="ctrl.loadDay(0)">Sunday</button>
+        <button ng-click="ctrl.loadDay(1)">Monday</button>
+        <button ng-click="ctrl.loadDay(2)">Tuesday</button>
+        <button ng-click="ctrl.loadDay(3)">Wednesday</button>
+        <button ng-click="ctrl.loadDay(4)">Thursday</button>
+        <button ng-click="ctrl.loadDay(5)">Friday</button>
+        <button ng-click="ctrl.loadDay(6)">Saturday</button>
+      </div>
+
+
+      <div id="employeeSchedules">
+        <div ng-repeat="lineItem in ctrl.daySchedules">
+
+          {{ lineItem.employee.first_name }} {{ lineItem.employee.last_name }}
+
+          <div ng-if="lineItem.hasEntry">
+
             <input type="time" ng-model="lineItem.start_time" step="900">
             <input type="time" ng-model="lineItem.end_time" step="900">
-            <button ng-click="ctrl.newShift(lineItem)">Save Shift</button>
-            <button ng-click="lineItem.newShift = false">Cancel</button>
+            <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
+            <button ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
           </div>
+
+          <div ng-if="!lineItem.hasEntry">
+            <div ng-if="!lineItem.newShift">
+              OFF
+              <button ng-click="ctrl.setupNew(lineItem)">Add Shift</button>
+            </div>
+            <div ng-if="lineItem.newShift">
+              <input type="time" ng-model="lineItem.start_time" step="900">
+              <input type="time" ng-model="lineItem.end_time" step="900">
+              <button ng-click="ctrl.newShift(lineItem)">Save Shift</button>
+              <button ng-click="lineItem.newShift = false">Cancel</button>
+            </div>
+          </div>
+
         </div>
-
       </div>
+
     </div>
-
-
   </div>
 
   <div id="employeeView" ng-if="!ctrl.scheduleView">
 
-    <form>
-      <input type="text" ng-model="ctrl.newUser.first_name" required>
-      <input type="text" ng-model="ctrl.newUser.last_name" required>
-      <button ng-click="ctrl.createEmployee()">Add New Employee</button>
-
-    </form>
-
-    <div id="employeeList" ng-repeat="employee in ctrl.employees">
-      {{ employee.first_name }} {{ employee.last_name }}
-      <button ng-click="ctrl.deleteEmployee(employee)">Delete</button>
+    <div id="nav">
+      <button ng-click="ctrl.scheduleView = !ctrl.scheduleView">Manage Schedule</button>
     </div>
 
+    <div id="container">
+      <form>
+        <input type="text" ng-model="ctrl.newUser.first_name" required>
+        <input type="text" ng-model="ctrl.newUser.last_name" required>
+        <button ng-click="ctrl.createEmployee()">Add New Employee</button>
+
+      </form>
+
+      <div id="employeeList" ng-repeat="employee in ctrl.employees">
+        {{ employee.first_name }} {{ employee.last_name }}
+        <button ng-click="ctrl.deleteEmployee(employee)">Delete</button>
+      </div>
+    </div>
   </div>
 
 </body>
