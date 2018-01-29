@@ -49,11 +49,11 @@ app.controller('MainController', ['$http', function ($http) {
 
   convertDate = (date) => {
     let dateString = "";
-    dateString += (date.getMonth() + 1);
-    dateString += "/";
-    dateString += (date.getDate());
-    dateString += "/";
     dateString += (date.getFullYear());
+    dateString += "-";
+    dateString += (date.getMonth() + 1);
+    dateString += "-";
+    dateString += (date.getDate());
     dateString += " ";
     dateString += (date.getHours());
     dateString += ":";
@@ -100,6 +100,10 @@ app.controller('MainController', ['$http', function ($http) {
     entry.end_time = new Date(this.periodStartDate);
     addHours(entry.start_time,9);
     addHours(entry.end_time,17)
+    addDays(entry.start_time, this.currentDay);
+    addDays(entry.end_time, this.currentDay);
+    console.log(entry.start_time);
+    console.log(entry.end_time);
   }
 
 
@@ -203,6 +207,7 @@ app.controller('MainController', ['$http', function ($http) {
       start_time: convertDate(entry.start_time),
       end_time: convertDate(entry.end_time)
     }
+    console.log("NEW SHIFT PARAMS");
     console.log(params);
 
     $http({
