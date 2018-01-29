@@ -47,8 +47,9 @@
 
         <div ng-if="lineItem.hasEntry">
           
-          <input type="time" ng-model="lineItem.start_time">
-          <input type="time" ng-model="lineItem.end_time">
+          <input type="time" ng-model="lineItem.start_time" step="900">
+          <input type="time" ng-model="lineItem.end_time" step="900">
+          <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
         </div>
 
         <div ng-if="!lineItem.hasEntry">
