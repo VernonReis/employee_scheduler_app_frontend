@@ -4,6 +4,7 @@ app.controller('MainController', ['$http', function ($http) {
 
   this.currentWeek = 0;
   this.employer = 1;
+  
 
 
 
@@ -39,12 +40,12 @@ app.controller('MainController', ['$http', function ($http) {
     return test.getDay();
   }
 
-  addDays = (date,days) => {
-    return new Date(date.setTime( date.getTime() + days * 86400000 ));
+  addDays = (date, days) => {
+    return new Date(date.setTime(date.getTime() + days * 86400000));
   }
 
-  addHours = (date,days) => {
-    return new Date(date.setTime( date.getTime() + days * 3600000 ));
+  addHours = (date, days) => {
+    return new Date(date.setTime(date.getTime() + days * 3600000));
   }
 
   convertDate = (date) => {
@@ -61,26 +62,40 @@ app.controller('MainController', ['$http', function ($http) {
     return dateString;
   }
 
-  compare = (a,b) => {
-    if(a.employee.id < b.employee.id) return -1;
-    if(a.employee.id > b.employee.id) return 1;
+  compareEmpId = (a, b) => {
+    if (a.employee.id < b.employee.id) return -1;
+    if (a.employee.id > b.employee.id) return 1;
     return 0;
   }
 
-  $http({
-    url: this.url + '/employers/1',
-    method: 'GET'
-  }).then(response => {
-    this.payPeriods = response.data.pay_periods;
+  comparePayId = (a, b) => {
+    if (a.id > b.id) return -1;
+    if (a.id < b.id) return 1;
+    return 0;
+  }
 
-    for (index in this.payPeriods) {
-      this.payPeriods[index].start_date = parseDateTime(this.payPeriods[index].start_date)
-    }
 
-    this.employees = response.data.employees;
-  }, error => {
-    // console.log(error.message);
-  }).catch(err => console.log(err))
+  this.initialize = () => {
+    $http({
+      url: this.url + '/employers/1',
+      method: 'GET'
+    }).then(response => {
+      this.payPeriods = response.data.pay_periods;
+      this.payPeriods.sort(comparePayId);
+
+      for (index in this.payPeriods) {
+        this.payPeriods[index].start_date = parseDateTime(this.payPeriods[index].start_date)
+      }
+
+
+
+      this.employees = response.data.employees;
+    }, error => {
+      // console.log(error.message);
+    }).catch(err => console.log(err))
+  }
+
+  this.initialize();
 
 
   this.createScheduleEntry = (entry) => {
@@ -98,8 +113,8 @@ app.controller('MainController', ['$http', function ($http) {
     entry.newShift = true;
     entry.start_time = new Date(this.periodStartDate);
     entry.end_time = new Date(this.periodStartDate);
-    addHours(entry.start_time,9);
-    addHours(entry.end_time,17)
+    addHours(entry.start_time, 9);
+    addHours(entry.end_time, 17)
     addDays(entry.start_time, this.currentDay);
     addDays(entry.end_time, this.currentDay);
     console.log(entry.start_time);
@@ -111,7 +126,7 @@ app.controller('MainController', ['$http', function ($http) {
 
 
   this.loadWeek = () => {
-    console.log(this.selectedPeriod)
+
     this.currentPeriod = this.selectedPeriod;
     $http({
       url: this.url + '/pay_periods/1',
@@ -125,8 +140,9 @@ app.controller('MainController', ['$http', function ($http) {
       }
 
       this.daySchedules = this.schedule_entries;
-      this.loadDay(0);
-
+      if (this.selectedPeriod != null) {
+        this.loadDay(0);
+      }
     }, error => {
       // console.log(error.message);
     }).catch(err => console.log(err))
@@ -164,7 +180,7 @@ app.controller('MainController', ['$http', function ($http) {
         else {
           this.daySchedules.push(newLine);
         }
-        this.daySchedules.sort(compare);
+        this.daySchedules.sort(compareEmpId);
       }, error => {
         // console.log(error.message);
       }).catch(err => console.log(err))
@@ -176,7 +192,6 @@ app.controller('MainController', ['$http', function ($http) {
       start_time: convertDate(entry.start_time),
       end_time: convertDate(entry.end_time)
     }
-    console.log(addHours(entry.start_time,2))
     $http({
       url: this.url + '/schedule_entries/' + entry.schedule_entry.id,
       method: 'PUT',
@@ -209,8 +224,6 @@ app.controller('MainController', ['$http', function ($http) {
       start_time: convertDate(entry.start_time),
       end_time: convertDate(entry.end_time)
     }
-    console.log("NEW SHIFT PARAMS");
-    console.log(params);
 
     $http({
       url: this.url + '/schedule_entries',
@@ -221,19 +234,26 @@ app.controller('MainController', ['$http', function ($http) {
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))
-    
+
 
   }
 
-  this.createWeek = () =>
-  {
-    // Get all pay_periods for employer
-
-    // Order pay periods by id DESC
-
-    // Add seven days to start_date of first item in array
-
-    // Create new pay period with said start_date
+  this.createWeek = () => {
+    newStart = new Date(this.payPeriods[0].start_date);
+    addDays(newStart, 7);
+    params = {
+      employer_id: this.employer,
+      start_date: convertDate(newStart)
+    }
+    $http({
+      url: this.url + '/pay_periods',
+      method: 'POST',
+      data: params
+    }).then(response => {
+      this.initialize();
+    }, error => {
+      console.log(error.message);
+    }).catch(err => console.log(err))
   }
 
 
