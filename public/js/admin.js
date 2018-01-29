@@ -39,6 +39,14 @@ app.controller('MainController', ['$http', function ($http) {
     return test.getDay();
   }
 
+  addDays = (date,days) => {
+    return new Date(date.setTime( date.getTime() + days * 86400000 ));
+  }
+
+  addHours = (date,days) => {
+    return new Date(date.setTime( date.getTime() + days * 3600000 ));
+  }
+
   convertDate = (date) => {
     let dateString = "";
     dateString += (date.getMonth() + 1);
@@ -84,9 +92,14 @@ app.controller('MainController', ['$http', function ($http) {
       // Reload week
       this.loadWeek(this.currentWeek);
     }).catch(err => console.log('Catch', err))
+  }
 
-
-
+  this.setupNew = (entry) => {
+    entry.newShift = true;
+    entry.start_time = new Date(this.periodStartDate);
+    entry.end_time = new Date(this.periodStartDate);
+    addHours(entry.start_time,9);
+    addHours(entry.end_time,17)
   }
 
 
@@ -100,7 +113,7 @@ app.controller('MainController', ['$http', function ($http) {
       method: 'GET'
     }).then(response => {
       this.scheduleEntries = response.data.schedule_entries;
-
+      this.periodStartDate = parseDateTime(response.data.start_date);
       for (index in this.scheduleEntries) {
         this.scheduleEntries[index].start_time = parseDateTime(this.scheduleEntries[index].start_time)
         this.scheduleEntries[index].end_time = parseDateTime(this.scheduleEntries[index].end_time)
@@ -137,6 +150,7 @@ app.controller('MainController', ['$http', function ($http) {
             newLine.start_time = new Date(parseDateTime(entry.start_time));
             newLine.end_time = new Date(parseDateTime(entry.end_time));
             newLine.hasEntry = true;
+            newLine.newShift = false;
           }
         }
         if (this.daySchedules == null) {
@@ -157,6 +171,7 @@ app.controller('MainController', ['$http', function ($http) {
       start_time: convertDate(entry.start_time),
       end_time: convertDate(entry.end_time)
     }
+    console.log(addHours(entry.start_time,2))
     $http({
       url: this.url + '/schedule_entries/' + entry.schedule_entry.id,
       method: 'PUT',
@@ -178,6 +193,29 @@ app.controller('MainController', ['$http', function ($http) {
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))
+  }
+
+  this.newShift = (entry) => {
+    params = {
+      employee_id: entry.employee.id,
+      employer_id: entry.employee.employer_id,
+      pay_period_id: this.currentPeriod,
+      start_time: convertDate(entry.start_time),
+      end_time: convertDate(entry.end_time)
+    }
+    console.log(params);
+
+    $http({
+      url: this.url + '/schedule_entries',
+      method: 'POST',
+      data: params
+    }).then(response => {
+      this.loadDay(this.currentDay);
+    }, error => {
+      console.log(error.message);
+    }).catch(err => console.log(err))
+    
+
   }
 
 

@@ -46,7 +46,7 @@
         {{ lineItem.employee.first_name }} {{ lineItem.employee.last_name }}
 
         <div ng-if="lineItem.hasEntry">
-          
+
           <input type="time" ng-model="lineItem.start_time" step="900">
           <input type="time" ng-model="lineItem.end_time" step="900">
           <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
@@ -54,8 +54,16 @@
         </div>
 
         <div ng-if="!lineItem.hasEntry">
-          OFF
-          <button ng-click="ctrl.addShift(lineItem)">Add Shift</button>
+          <div ng-if="!lineItem.newShift">
+            OFF
+            <button ng-click="ctrl.setupNew(lineItem)">Add Shift</button>
+          </div>
+          <div ng-if="lineItem.newShift">
+            <input type="time" ng-model="lineItem.start_time" step="900">
+            <input type="time" ng-model="lineItem.end_time" step="900">
+            <button ng-click="ctrl.newShift(lineItem)">Save Shift</button>
+            <button ng-click="lineItem.newShift = false">Cancel</button>
+          </div>
         </div>
 
       </div>
@@ -70,12 +78,11 @@
       <input type="text" ng-model="ctrl.newUser.first_name" required>
       <input type="text" ng-model="ctrl.newUser.last_name" required>
       <button ng-click="ctrl.createEmployee()">Add New Employee</button>
-      
+
     </form>
 
     <div id="employeeList" ng-repeat="employee in ctrl.employees">
-      {{ employee.first_name }}
-      {{ employee.last_name }}
+      {{ employee.first_name }} {{ employee.last_name }}
       <button ng-click="ctrl.deleteEmployee(employee)">Delete</button>
     </div>
 
