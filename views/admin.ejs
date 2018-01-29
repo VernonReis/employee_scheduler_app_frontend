@@ -45,8 +45,29 @@
 
 
       <div id="employeeSchedules">
+
+          <table style="width:100%">
+              <tr>
+                <th id="nameCol">Name</th>
+                <th class="timeCol">Start Time</th> 
+                <th class="timeCol">End Time</th>
+                <th id="optionCol">Options</th>
+              </tr>
+
+              <tr ng-repeat="lineItem in ctrl.daySchedules">
+                <td>{{ lineItem.employee.last_name }}, {{ lineItem.employee.first_name}}</td>
+                <td><input type="time" ng-model="lineItem.start_time" step="900"></td>
+                <td><input type="time" ng-model="lineItem.end_time" step="900"></td>
+                <td>
+                    <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
+                    <button ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
+                </td>
+              </tr>
+            </table>
+
+
         <h3 ng-if="ctrl.dayHeader">{{ ctrl.dayHeader }}</h3>
-        <div ng-repeat="lineItem in ctrl.daySchedules">
+        <!-- <div ng-repeat="lineItem in ctrl.daySchedules">
 
           {{ lineItem.employee.first_name }} {{ lineItem.employee.last_name }}
 
@@ -71,7 +92,7 @@
             </div>
           </div>
 
-        </div>
+        </div> -->
       </div>
 
     </div>

@@ -1,3 +1,24 @@
 #container {
   margin-top: 50px;
 }
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table {
+  width: 800px;
+}
+
+.timeCol {
+  width: 100px;
+}
+
+#nameCol {
+  width: 200px;
+}
+
+#optionCol {
+  width: 100px;
+}
