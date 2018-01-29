@@ -45,6 +45,7 @@
 
 
       <div id="employeeSchedules">
+        <h3 ng-if="ctrl.dayHeader">{{ ctrl.dayHeader }}</h3>
         <div ng-repeat="lineItem in ctrl.daySchedules">
 
           {{ lineItem.employee.first_name }} {{ lineItem.employee.last_name }}

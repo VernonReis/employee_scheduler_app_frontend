@@ -74,8 +74,38 @@ app.controller('MainController', ['$http', function ($http) {
     return 0;
   }
 
+  setDayHeader = (dayOfWeek) => {
+    switch (dayOfWeek) {
+      case 0:
+        this.dayHeader = "Sunday";
+        break;
+      case 1:
+        this.dayHeader = "Monday";
+        break;
+      case 2:
+        this.dayHeader = "Tuesday";
+        break;
+      case 3:
+        this.dayHeader = "Wednesday";
+        break;
+      case 4:
+        this.dayHeader = "Thursday";
+        break;
+      case 5:
+        this.dayHeader = "Friday";
+        break;
+      case 6:
+        this.dayHeader = "Saturday";
+        break;
+
+      default:
+        return 0;
+    }
+  }
+
 
   this.initialize = () => {
+    
     $http({
       url: this.url + '/employers/1',
       method: 'GET'
@@ -153,6 +183,7 @@ app.controller('MainController', ['$http', function ($http) {
   this.loadDay = (dayOfWeek) => {
     this.daySchedules = null;
     this.currentDay = dayOfWeek;
+    setDayHeader(dayOfWeek);
 
 
     for (employee of this.employees) {

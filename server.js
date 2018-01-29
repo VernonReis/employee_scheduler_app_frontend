@@ -21,16 +21,16 @@ app.use(express.static('public'));
 // CONTROLLERS
 // ==============
 const adminScheduleController = require('./controllers/admin.js')
-const employeeScheduleController = require('./controllers/employee.js')
 const loginController = require('./controllers/login.js')
+const sessionsController = require('./controllers/sessions.js')
 
 // ==============
 // USE OF CONTROLLERS
 // ==============
 
 app.use('/admin', adminScheduleController);
-app.use('/employee', employeeScheduleController);
 app.use('/login', loginController);
+app.use('/session', sessionsController);
 
 // ==============
 // ROUTES

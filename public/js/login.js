@@ -16,20 +16,14 @@ app.controller('MainController', ['$http', function ($http) {
 
     let pass = true;
     const newUser = {
-      'email': `${this.newUserForm.username}@sample.com`,
+      'username': `${this.newUserForm.username}@sample.com`,
       'password': this.newUserForm.password
     }
 
-
-    if (this.newUserForm.username.length < 6) {
-      pass = false;
-      this.shortUser = true;
+    const newCompany = {
+      'company_name': this.newUserForm.company_name
     }
 
-    if (this.newUserForm.password.length < 8) {
-      pass = false;
-      this.shortPass = true;
-    }
 
     if (pass) {
       $http({
@@ -82,22 +76,6 @@ app.controller('MainController', ['$http', function ($http) {
     }).then(response => {
       console.log(response);
       this.user = response.data;
-      this.user.name = this.loginForm.username;
-      this.loginForm = {};
-      this.badLogin = false;
-      this.shortUser = false;
-      this.shortPass = false;
-
-      // $http({
-      //   url: '/session',
-      //   method: 'POST',
-      //   data: this.user
-      // }).then(response => {
-
-      // }, error => {
-
-      //   console.log(error.message);
-      // }).catch(err => console.log(err))
 
     }, error => {
       this.badLogin = true;
