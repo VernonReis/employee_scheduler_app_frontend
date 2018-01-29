@@ -28,7 +28,7 @@
     <button ng-click="ctrl.createWeek()">Create Next Week Schedule</button>
 
 
-    <div id="daySelector">
+    <div id="daySelector" ng-if="ctrl.currentPeriod">
       View:
       <button ng-click="ctrl.loadDay(0)">Sunday</button>
       <button ng-click="ctrl.loadDay(1)">Monday</button>

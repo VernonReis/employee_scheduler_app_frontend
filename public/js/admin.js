@@ -195,7 +195,7 @@ app.controller('MainController', ['$http', function ($http) {
       method: 'DELETE',
     }).then(response => {
       delete entry;
-      this.loadDay(this.dayOfWeek);
+      this.loadDay(this.currentDay);
     }, error => {
       console.log(error.message);
     }).catch(err => console.log(err))
@@ -223,6 +223,17 @@ app.controller('MainController', ['$http', function ($http) {
     }).catch(err => console.log(err))
     
 
+  }
+
+  this.createWeek = () =>
+  {
+    // Get all pay_periods for employer
+
+    // Order pay periods by id DESC
+
+    // Add seven days to start_date of first item in array
+
+    // Create new pay period with said start_date
   }
 
 
