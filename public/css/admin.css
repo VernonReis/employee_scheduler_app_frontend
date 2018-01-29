@@ -8,8 +8,9 @@ table, th, td {
 }
 
 table {
-  width: 800px;
+  margin: auto;
 }
+
 
 .timeCol {
   width: 100px;
@@ -20,5 +21,5 @@ table {
 }
 
 #optionCol {
-  width: 100px;
+  width: 200px;
 }

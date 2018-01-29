@@ -46,53 +46,60 @@
 
       <div id="employeeSchedules">
 
-          <table style="width:100%">
-              <tr>
-                <th id="nameCol">Name</th>
-                <th class="timeCol">Start Time</th> 
-                <th class="timeCol">End Time</th>
-                <th id="optionCol">Options</th>
-              </tr>
+        <table ng-if="ctrl.currentDay != null">
+          <caption>
+            <h3 ng-if="ctrl.dayHeader">{{ ctrl.dayHeader }}</h3>
+          </caption>
+          <tr>
+            <th id="nameCol">Name</th>
+            <th class="timeCol">Start Time</th>
+            <th class="timeCol">End Time</th>
+            <th id="optionCol">Options</th>
+          </tr>
 
-              <tr ng-repeat="lineItem in ctrl.daySchedules">
-                <td>{{ lineItem.employee.last_name }}, {{ lineItem.employee.first_name}}</td>
-                <td><input type="time" ng-model="lineItem.start_time" step="900"></td>
-                <td><input type="time" ng-model="lineItem.end_time" step="900"></td>
-                <td>
-                    <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
-                    <button ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
-                </td>
-              </tr>
-            </table>
+          <tr ng-repeat="lineItem in ctrl.daySchedules">
+            <td>{{ lineItem.employee.last_name }}, {{ lineItem.employee.first_name}}</td>
 
 
-        <h3 ng-if="ctrl.dayHeader">{{ ctrl.dayHeader }}</h3>
-        <!-- <div ng-repeat="lineItem in ctrl.daySchedules">
 
-          {{ lineItem.employee.first_name }} {{ lineItem.employee.last_name }}
-
-          <div ng-if="lineItem.hasEntry">
-
-            <input type="time" ng-model="lineItem.start_time" step="900">
-            <input type="time" ng-model="lineItem.end_time" step="900">
-            <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
-            <button ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
-          </div>
-
-          <div ng-if="!lineItem.hasEntry">
-            <div ng-if="!lineItem.newShift">
-              OFF
-              <button ng-click="ctrl.setupNew(lineItem)">Add Shift</button>
-            </div>
-            <div ng-if="lineItem.newShift">
+            <td ng-if="lineItem.hasEntry || lineItem.newShift">
               <input type="time" ng-model="lineItem.start_time" step="900">
+            </td>
+            <td ng-if="lineItem.hasEntry || lineItem.newShift">
               <input type="time" ng-model="lineItem.end_time" step="900">
+            </td>
+            <td ng-if="lineItem.hasEntry">
+              <button ng-click="ctrl.updateEntry(lineItem)">Save Changes</button>
+              <button ng-click="ctrl.deleteEntry(lineItem)">Delete Shift</button>
+            </td>
+
+            <td ng-if="!lineItem.hasEntry && !lineItem.newShift">
+              OFF
+            </td>
+            <td ng-if="!lineItem.hasEntry && !lineItem.newShift">
+              OFF
+            </td>
+
+
+            <td ng-if="!lineItem.hasEntry && !lineItem.newShift">
+              <button ng-click="ctrl.setupNew(lineItem)">Add Shift</button>
+            </td>
+
+            <td ng-if="!lineItem.hasEntry && lineItem.newShift">
               <button ng-click="ctrl.newShift(lineItem)">Save Shift</button>
               <button ng-click="lineItem.newShift = false">Cancel</button>
-            </div>
-          </div>
+            </td>
 
-        </div> -->
+
+
+
+
+
+          </tr>
+        </table>
+
+
+
       </div>
 
     </div>
